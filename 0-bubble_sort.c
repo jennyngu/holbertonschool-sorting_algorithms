@@ -1,7 +1,8 @@
 #include "sort.h"
 
 /**
- *bubble_sort - sorts array of ints in ascending order using Bubble sort algorithm
+ *bubble_sort - sorts array of ints in ascending order
+ *using Bubble sort algorithm
  *@array: pointer to start of array
  *@size: size of array
  */
@@ -22,7 +23,7 @@ void bubble_sort(int *array, size_t size)
 		sorted = 1;
 		while (i < size - 1)
 		{
-			if (array[i] >= array[i + 1])
+			if (array[i] > array[i + 1])
 			{
 				sorted = 0;
 				temp_value = array[i];
