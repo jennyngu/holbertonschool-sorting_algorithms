@@ -7,7 +7,7 @@ VFLAGS= --leak-check=full --show-leak-kinds=all
 TARGET0=bubble
 SRC0=	0-bubble_sort.c \
 	0-main.c \
-	print_array.cprint_array.c
+	print_array.c
 
 TARGET1=insertion
 SRC1=	1-main.c \
