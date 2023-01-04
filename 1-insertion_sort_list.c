@@ -17,6 +17,14 @@ void swap_pair(listint_t *index, listint_t *temp, listint_t **list)
 		temp->prev = temp->next->prev;
 		temp->next->prev = index->next;
 	}
+	else
+	{
+		index->next = index->prev;
+		index->prev = index->next->prev;
+		temp->prev = temp->next;
+		index->prev->next = temp->prev;
+		temp->next = NULL;
+	}
 
 	if (index->prev == NULL)
 	{
@@ -26,21 +34,6 @@ void swap_pair(listint_t *index, listint_t *temp, listint_t **list)
 	{
 		index->prev->next = index;
 	}
-}
-
-/**
- * swap_last_pair - swaps the last pair of a doubly linked list
- * @index: the last node of a doubly linked list
- * @temp: the previous node
-*/
-
-void swap_last_pair(listint_t *index, listint_t *temp)
-{
-	index->next = index->prev;
-	index->prev = index->next->prev;
-	temp->prev = temp->next;
-	index->prev->next = temp->prev;
-	temp->next = NULL;
 }
 
 /**
@@ -109,8 +102,7 @@ void insertion_sort_list(listint_t **list)
 		}
 		if (index->n < temp->n && index->next == NULL)
 		{
-			swap_last_pair(index, temp);
-			index = (*list)->next;
+			swap_pair(index, temp, list);
 			print_list(*list);
 		}
 		place = index->next;
