@@ -77,7 +77,7 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *index;
 	listint_t *temp;
-	int sorted;
+	listint_t *place;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 	{
@@ -88,22 +88,19 @@ void insertion_sort_list(listint_t **list)
 		sort_two_element_list(list);
 		return;
 	}
-	sorted = 0;
-	while (sorted == 0)
+
+	place = *list;
+	while (place->next != NULL && place->n != 98)
 	{
-		sorted = 1;
-		index = *list;
-		temp = *list;
-		while (index->next != NULL)
+		place = place->next;
+		index = place;
+		temp = place->prev;
+
+		while (index->prev != NULL && index->n < temp->n)
 		{
-			if (index->n < temp->n)
-			{
-				swap_pair(index, temp, list);
-				print_list(*list);
-				index = index->next;
-				sorted = 0;
-			}
-			index = index->next;
+			swap_pair(index, temp, list);
+			print_list(*list);
+			//index = index->next;
 			temp = index->prev;
 		}
 		if (index->n < temp->n && index->next == NULL)
