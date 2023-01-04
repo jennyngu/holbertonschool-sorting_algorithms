@@ -24,7 +24,7 @@ void swap_pair(listint_t *index, listint_t *temp, listint_t **list)
 	}
 	else
 	{
-		index->prev->next = temp->prev;
+		index->prev->next = index;
 	}
 }
 
@@ -89,24 +89,30 @@ void insertion_sort_list(listint_t **list)
 		return;
 	}
 
-	place = *list;
-	while (place->next != NULL && place->n != 98)
+	place = (*list)->next;
+	while (place != NULL)
 	{
-		place = place->next;
 		index = place;
 		temp = place->prev;
-
 		while (index->prev != NULL && index->n < temp->n)
 		{
 			swap_pair(index, temp, list);
 			print_list(*list);
-			//index = index->next;
-			temp = index->prev;
+			if (index->prev != NULL)
+			{
+				temp = index->prev;
+			}
+			if (index->next == NULL)
+			{
+				break;
+			}
 		}
 		if (index->n < temp->n && index->next == NULL)
 		{
 			swap_last_pair(index, temp);
+			index = (*list)->next;
 			print_list(*list);
 		}
+		place = index->next;
 	}
 }
