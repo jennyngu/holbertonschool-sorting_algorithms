@@ -44,6 +44,29 @@ void swap_last_pair(listint_t *index, listint_t *temp)
 }
 
 /**
+ * sort_two_element_list - sorts a list containing only two elements
+ * @list: a pointer to the head of a list
+ */
+
+void sort_two_element_list(listint_t **list)
+{
+	listint_t *index;
+	listint_t *temp;
+
+	index = (*list)->next;
+	temp = *list;
+	if (index->n < temp->n)
+	{
+		index->next = index->prev;
+		temp->prev = temp->next;
+		index->prev = NULL;
+		temp->next = NULL;
+		*list = index;
+		print_list(*list);
+	}
+}
+
+/**
  * insertion_sort_list - sorts a doubly linked list of integers in ascending
  * order using the Insertion sort algorithm
  * @list: a pointer to the head of a doubly linked list
@@ -62,19 +85,9 @@ void insertion_sort_list(listint_t **list)
 	}
 	if ((*list)->next->next == NULL)
 	{
-		index = (*list)->next;
-		temp = *list;
-		if (index->n < temp->n)
-		{
-			index->next = index->prev;
-			temp->prev = temp->next;
-			index->prev = NULL;
-			temp->next = NULL;
-			*list = index;
-		}
+		sort_two_element_list(list);
 		return;
 	}
-
 	sorted = 0;
 	while (sorted == 0)
 	{
