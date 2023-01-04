@@ -45,7 +45,7 @@ clean:
 re: clean all
 
 betty:
-	betty $(SRC0) $(SRC1) $(SRC2) $(SRC3)
+	betty 0-bubble_sort.c 1-insertion_sort_list.c 2-selection_sort.c 3-quick_sort.c 
 
 val0:
 	$(VALGRIND) $(VFLAGS) ./bubble
